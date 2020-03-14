@@ -1,7 +1,5 @@
-let width = window.innerWidth;
-let height = window.innerHeight;
-let topx = width / 2 - 250;
-let topy = height / 2 - 300;
+let width = 500;
+let height = 650;
 
 var stage = new Konva.Stage({
   container: "container",
@@ -13,8 +11,8 @@ var layer = new Konva.Layer();
 stage.add(layer);
 
 var box = new Konva.Rect({
-  x: width / 2 - 250,
-  y: height / 2 - 300,
+  x: 0,
+  y: 0,
   width: 500,
   height: 650,
   fill: "#EC808D"
@@ -22,8 +20,8 @@ var box = new Konva.Rect({
 layer.add(box);
 // 第一屏
 var boxContent = new Konva.Rect({
-  x: width / 2 - 160,
-  y: height / 2 - 150,
+  x: 90,
+  y: 175,
   width: 300,
   height: 300,
   fill: "#FACD91"
@@ -379,7 +377,7 @@ function gotoGame() {
 function drawMirror(n) {
   for (let i = 0; i <= n; i++) {
     var obj = {
-      points: [topx + 300, topy + 600, topx + 350, topy + 650],
+      points: [300, 600, 350, 650],
       stroke: "#FFFF00",
       tension: 1,
       draggable: i === 0 ? false : true,
@@ -393,7 +391,19 @@ function drawMirror(n) {
       document.body.style.cursor = "default";
     });
     layer.add(mirror1);
+    mirror1.on("dragend", function(e) {
+      console.log(e);
+    });
   }
+  var word = new Konva.Text({
+    x: width / 2 - 150,
+    y: height / 2 - 60,
+    text: "x" + 2,
+    fontSize: 14,
+    fill: "#fff",
+    storke: "#fff"
+  });
+  layer.add(word);
   layer.draw();
 }
 
