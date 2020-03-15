@@ -1,5 +1,8 @@
 let width = 500;
 let height = 650;
+let numberText = 2;
+let mirrorArr = [];
+let time = 0;
 
 var stage = new Konva.Stage({
   container: "container",
@@ -156,12 +159,7 @@ function drawForth() {
 function drawRect() {
   for (let i = 0; i < 11; i++) {
     var dashedLine = new Konva.Line({
-      points: [
-        width / 2 - 250,
-        height / 2 - 300 + 50 * (i + 1),
-        width / 2 + 250,
-        height / 2 - 300 + 50 * (i + 1)
-      ],
+      points: [width / 2 - 250, 50 * (i + 1), width / 2 + 250, 50 * (i + 1)],
       stroke: "#D7D7D7",
       tension: 1
     });
@@ -170,12 +168,7 @@ function drawRect() {
   }
   for (let i = 0; i < 10; i++) {
     var dashedLine = new Konva.Line({
-      points: [
-        width / 2 - 250 + (i + 1) * 50,
-        height / 2 - 300,
-        width / 2 - 250 + (i + 1) * 50,
-        height / 2 + 250
-      ],
+      points: [(i + 1) * 50, 0, (i + 1) * 50, 550],
       stroke: "#D7D7D7",
       tension: 1
     });
@@ -373,6 +366,19 @@ function gotoGame() {
   layer.draw();
   stage.on("click", gotoGame1);
 }
+// 写文字
+function drawText() {
+  var word = new Konva.Text({
+    x: 330,
+    y: 600,
+    text: "x" + numberText,
+    fontSize: 14,
+    fill: "#fff",
+    storke: "#fff"
+  });
+  layer.add(word);
+  layer.draw();
+}
 
 function drawMirror(n) {
   for (let i = 0; i <= n; i++) {
@@ -391,20 +397,32 @@ function drawMirror(n) {
       document.body.style.cursor = "default";
     });
     layer.add(mirror1);
-    mirror1.on("dragend", function(e) {
-      console.log(e);
-    });
+    mirror1.on("dragstart", dragstart);
+    mirror1.on("dragend", dragendFun);
   }
-  var word = new Konva.Text({
-    x: width / 2 - 150,
-    y: height / 2 - 60,
-    text: "x" + 2,
-    fontSize: 14,
-    fill: "#fff",
-    storke: "#fff"
-  });
-  layer.add(word);
-  layer.draw();
+  drawText();
+}
+
+function dragstart() {
+  time = new Date().getTime();
+}
+
+// 拖拽结束后判定动画
+function dragendFun(e) {
+  let t = new Date().getTime();
+  let x = e.evt.offsetX;
+  let y = e.evt.offsetY;
+  if (t - time > 300) {
+    e.target.attrs.x = 0;
+    e.target.attrs.y = 0;
+    console.log(e);
+    layer.draw();
+  } else {
+    console.log(44);
+  }
+  // if (e.evt.offsetX) {
+
+  // }
 }
 
 function gotoGame1() {
