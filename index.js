@@ -410,13 +410,19 @@ function dragstart() {
 // 拖拽结束后判定动画
 function dragendFun(e) {
   let t = new Date().getTime();
-  let x = e.evt.offsetX;
-  let y = e.evt.offsetY;
+  let x = Math.floor(e.evt.offsetX / 50) * 50;
+  let y = Math.floor(e.evt.offsetY / 50) * 50;
+  let xOffset = x - 300;
+  let yOffset = y - 600;
   if (t - time > 300) {
-    e.target.attrs.x = 0;
-    e.target.attrs.y = 0;
-    console.log(e);
+    e.target.attrs.points = [
+      x - xOffset,
+      y - yOffset,
+      x - xOffset + 50,
+      y - yOffset + 50
+    ];
     layer.draw();
+    console.log(e.target.attrs);
   } else {
     console.log(44);
   }
