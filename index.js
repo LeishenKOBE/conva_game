@@ -2,7 +2,6 @@ let width = 500;
 let height = 650;
 let numberText = 2;
 let mirrorArr = [];
-let time = 0;
 
 var stage = new Konva.Stage({
   container: "container",
@@ -397,38 +396,53 @@ function drawMirror(n) {
       document.body.style.cursor = "default";
     });
     layer.add(mirror1);
-    mirror1.on("dragstart", dragstart);
     mirror1.on("dragend", dragendFun);
   }
   drawText();
 }
 
-function dragstart() {
-  time = new Date().getTime();
-}
-
 // 拖拽结束后判定动画
 function dragendFun(e) {
-  let t = new Date().getTime();
-  let x = Math.floor(e.evt.offsetX / 50) * 50;
-  let y = Math.floor(e.evt.offsetY / 50) * 50;
-  let xOffset = x - 300;
-  let yOffset = y - 600;
-  if (t - time > 300) {
-    e.target.attrs.points = [
-      x - xOffset,
-      y - yOffset,
-      x - xOffset + 50,
-      y - yOffset + 50
-    ];
-    layer.draw();
-    console.log(e.target.attrs);
-  } else {
-    console.log(44);
-  }
-  // if (e.evt.offsetX) {
+  e.target.drag = true;
+  let x = -1;
+  layer.children.forEach(item => {
+    if (item.drag) {
+      x = item.index;
+    }
+  });
+  layer.children.splice(x, 1);
+  let xOffset = Math.floor(e.evt.offsetX / 50) * 50;
+  let yOffset = Math.floor(e.evt.offsetY / 50) * 50;
 
-  // }
+  let mirror1 = new Konva.Line({
+    points: [xOffset, yOffset, xOffset + 50, yOffset + 50],
+    stroke: "#FFFF00",
+    tension: 1,
+    draggable: true,
+    strokeWidth: 6
+  });
+  mirror1.on("click", changeDirection);
+  mirror1.on("mouseover", function() {
+    document.body.style.cursor = "pointer";
+  });
+  mirror1.on("mouseout", function() {
+    document.body.style.cursor = "default";
+  });
+  mirror1.on("dragend", dragendFun);
+  mirrorArr.push([xOffset, yOffset, true]);
+  layer.add(mirror1);
+  layer.draw();
+}
+
+function changeDirection(e) {
+  e.target.change = true;
+  let x = -1;
+  layer.children.forEach(item => {
+    if (item.change) {
+      x = item.index;
+    }
+  });
+  layer.children.splice(x, 1);
 }
 
 function gotoGame1() {
