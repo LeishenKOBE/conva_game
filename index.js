@@ -1,6 +1,7 @@
 let width = 500;
 let height = 650;
 let numberText = 2;
+let time = false;
 let mirrorArr = [];
 
 var stage = new Konva.Stage({
@@ -397,52 +398,96 @@ function drawMirror(n) {
     });
     layer.add(mirror1);
     mirror1.on("dragend", dragendFun);
+    mirror1.on("dragstart", dragstartFun);
   }
   drawText();
 }
-
+function dragstartFun() {
+  time = true;
+}
 // 拖拽结束后判定动画
 function dragendFun(e) {
-  e.target.drag = true;
-  let x = -1;
-  layer.children.forEach(item => {
-    if (item.drag) {
-      x = item.index;
+  if (time) {
+    time = false;
+    e.target.drag = true;
+    let x = -1;
+    for (let i = 0; i < layer.children.length; i++) {
+      let item = layer.children[i];
+      if (item.drag) {
+        x = i;
+        i = layer.children.length;
+      }
     }
-  });
-  layer.children.splice(x, 1);
-  let xOffset = Math.floor(e.evt.offsetX / 50) * 50;
-  let yOffset = Math.floor(e.evt.offsetY / 50) * 50;
+    layer.children.splice(x, 1);
+    let xOffset = Math.floor(e.evt.offsetX / 50) * 50;
+    let yOffset = Math.floor(e.evt.offsetY / 50) * 50;
 
-  let mirror1 = new Konva.Line({
-    points: [xOffset, yOffset, xOffset + 50, yOffset + 50],
-    stroke: "#FFFF00",
-    tension: 1,
-    draggable: true,
-    strokeWidth: 6
-  });
-  mirror1.on("click", changeDirection);
-  mirror1.on("mouseover", function() {
-    document.body.style.cursor = "pointer";
-  });
-  mirror1.on("mouseout", function() {
-    document.body.style.cursor = "default";
-  });
-  mirror1.on("dragend", dragendFun);
-  mirrorArr.push([xOffset, yOffset, true]);
-  layer.add(mirror1);
-  layer.draw();
-}
+    let mirror1 = new Konva.Line({
+      points: [xOffset, yOffset, xOffset + 50, yOffset + 50],
+      stroke: "#FFFF00",
+      tension: 1,
+      draggable: true,
+      strokeWidth: 6
+    });
+    mirror1.on("mouseover", function() {
+      document.body.style.cursor = "pointer";
+    });
+    mirror1.on("mouseout", function() {
+      document.body.style.cursor = "default";
+    });
+    mirror1.on("dragend", dragendFun);
+    mirrorArr.push([xOffset, yOffset, true]);
+    layer.add(mirror1);
+    layer.draw();
+  } else {
+    if (
+      e.evt.offsetX >= 0 &&
+      e.evt.offsetX <= 500 &&
+      e.evt.offsetY >= 0 &&
+      e.evt.offsetY <= 550
+    ) {
+      e.target.change = true;
+      let x = -1;
+      for (let i = 0; i < layer.children.length; i++) {
+        let item = layer.children[i];
+        if (item.drag) {
+          x = i;
+          i = layer.children.length;
+        }
+      }
+      layer.children.splice(x, 1);
+      let direction = true;
+      let xOffset = Math.floor(e.evt.offsetX / 50) * 50;
+      let yOffset = Math.floor(e.evt.offsetY / 50) * 50;
+      for (let i = 0; i < mirrorArr.length; i++) {
+        if (mirrorArr[i][0] === xOffset && mirrorArr[i][1] === yOffset) {
+          direction = mirrorArr[i][2];
+          mirrorArr.splice(i, 1);
+          i = mirrorArr.length;
+        }
+      }
 
-function changeDirection(e) {
-  e.target.change = true;
-  let x = -1;
-  layer.children.forEach(item => {
-    if (item.change) {
-      x = item.index;
+      mirrorArr.push([xOffset, yOffset, !direction]);
+      let mirror1 = new Konva.Line({
+        points: direction
+          ? [xOffset + 50, yOffset, xOffset, yOffset + 50]
+          : [xOffset, yOffset, xOffset + 50, yOffset + 50],
+        stroke: "#FFFF00",
+        tension: 1,
+        draggable: true,
+        strokeWidth: 6
+      });
+      mirror1.on("mouseover", function() {
+        document.body.style.cursor = "pointer";
+      });
+      mirror1.on("mouseout", function() {
+        document.body.style.cursor = "default";
+      });
+      mirror1.on("dragend", dragendFun);
+      layer.add(mirror1);
+      layer.draw();
     }
-  });
-  layer.children.splice(x, 1);
+  }
 }
 
 function gotoGame1() {
