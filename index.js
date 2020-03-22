@@ -532,11 +532,41 @@ function dragendFun(e) {
 	}
 }
 
+function drawCatAndMouse() {
+	var cat = new Image();
+	cat.src = './images/cat.jpg' // 设置图片路径      
+	cat.onload = function() {
+		var catImg = new Konva.Image({
+			x: 50,
+			y: 250,
+			image: cat,
+			width: 50,
+			height: 50
+		})
+		layer.add(catImg) // 添加图片对象到画布             
+		layer.draw(); // 渲染
+	}
+	var mouse = new Image();
+	mouse.src = './images/mouse.jpg' // 设置图片路径      
+	mouse.onload = function() {
+		var mouseImg = new Konva.Image({
+			x: 400,
+			y: 250,
+			image: mouse,
+			width: 50,
+			height: 50
+		})
+		layer.add(mouseImg) // 添加图片对象到画布             
+		layer.draw(); // 渲染
+	}
+}
+
 function gotoGame1() {
 	stage.off("click");
 	layer.children.splice(1);
 	drawRect();
-	drawObstacle(150, 250, 200, 100);
+	drawObstacle(150, 200, 200, 150);
+	drawCatAndMouse()
 	layer.draw();
 	drawMirror(2);
 	drawEnd()
@@ -544,25 +574,25 @@ function gotoGame1() {
 
 function drawLight(xs, yx, xe, ye) {
 	var arrow = new Konva.Arrow({
-		x: stage.width() / 4,
-		y: stage.height() / 4,
-		points: [0, 0, width / 2, height / 2],
+		points: [xs, yx, xe, ye],
 		pointerLength: 20,
 		pointerWidth: 20,
-		fill: 'black',
-		stroke: 'black',
-		strokeWidth: 4
+		fill: '#95F204',
+		stroke: '#95F204',
+		strokeWidth: 4,
+		name: "light"
 	});
 	layer.add(arrow)
 	layer.draw()
 }
 
-function showReStart(){
-	
+function showReStart() {
+
 }
 
 // 第一关结算方法
 function clickEnd() {
+
 	let xArr = []
 	let yArr = []
 	let dir = []
@@ -672,5 +702,203 @@ function clickEnd() {
 		drawLight(75, 0, 75, 250)
 		drawLight(75, 300, 75, 550)
 		showReStart()
+	}
+}
+
+function successPage() {
+	layer.children.splice(1);
+	var success = new Image();
+	success.src = './images/good.jpg' // 设置图片路径      
+	success.onload = function() {
+		var successImg = new Konva.Image({
+			x: 150,
+			y: 20,
+			image: success,
+			width: 200,
+			height: 200
+		})
+		layer.add(successImg) // 添加图片对象到画布           
+		var word = new Konva.Text({
+			x: 150,
+			y: 270,
+			text: 'Congratulations\n你太棒了！\n第二关稍加了点\n难度，加油哦！',
+			fontSize: 34,
+			fill: "#FFFF00",
+			storke: "#FFFF00"
+		});
+		stage.on('click', gotoGame2)
+		layer.add(word);
+		layer.draw(); // 渲染
+	}
+}
+
+function drawPoliceAndThief() {
+	var police = new Image();
+	police.src = './images/police.jpg' // 设置图片路径      
+	police.onload = function() {
+		var policeImg = new Konva.Image({
+			x: 250,
+			y: 200,
+			image: police,
+			width: 50,
+			height: 50
+		})
+		layer.add(policeImg) // 添加图片对象到画布             
+		layer.draw(); // 渲染
+	}
+	var thief = new Image();
+	thief.src = './images/thief.jpg' // 设置图片路径      
+	thief.onload = function() {
+		var thiefImg = new Konva.Image({
+			x: 250,
+			y: 300,
+			image: thief,
+			width: 50,
+			height: 50
+		})
+		layer.add(thiefImg) // 添加图片对象到画布             
+		layer.draw(); // 渲染
+	}
+}
+
+function gotoGame2() {
+	stage.off("click");
+	layer.children.splice(1);
+	drawRect();
+	drawObstacle(200, 50, 150, 50);
+	drawObstacle(200, 200, 150, 150);
+	drawObstacle(200, 450, 150, 50);
+	drawPoliceAndThief()
+	layer.draw();
+	drawMirror(4);
+	drawEnd2()
+}
+
+
+function drawEnd2() {
+	var star = new Konva.RegularPolygon({
+		x: 460,
+		y: 620,
+		sides: 3,
+		radius: 30,
+		fill: '#699BC8',
+		strokeWidth: 4,
+		rotation: 90
+	});
+	star.on("mouseover", function() {
+		document.body.style.cursor = "pointer";
+	});
+	star.on("mouseout", function() {
+		document.body.style.cursor = "default";
+	});
+	star.on('click', clickEnd2)
+	layer.add(star)
+	layer.draw()
+}
+
+function clickEnd2() {
+	const arr = mirrorArr.filter(item => item[0] === 250)
+	const firstArr = arr.filter(item => item[1] > 300)
+	if (firstArr.length > 0) {
+		drawLight(275, 350, 275, firstArr[0][1] + 25)
+		for (let i = 0; i < mirrorArr.length; i++) {
+			if (mirrorArr[i][0] === 250 && mirrorArr[i][1] === firstArr[0][1]) {
+				mirrorArr.splice(i, 1)
+				i--
+			}
+		}
+		if (firstArr[0][2]) {
+			const secondArr = mirrorArr.filter(item => item[1] === firstArr[0][1])
+			const secondX = secondArr.filter(item => item[0] > 250)
+			if (secondX.length > 0) {
+				drawLight(275, firstArr[0][1] + 25, secondX[0][0] + 25, firstArr[0][1] + 25)
+				for (let i = 0; i < mirrorArr.length; i++) {
+					if (mirrorArr[i][0] === secondX[0][0] && mirrorArr[i][1] === firstArr[0][1]) {
+						mirrorArr.splice(i, 1)
+						i--
+					}
+				}
+				if (secondX[0][2]) {
+					// drawLight()
+				} else {
+					const thirdArr = mirrorArr.filter(item => item[0] === secondX[0][0])
+					const thirdY = thirdArr.filter(item => item[1] < 200 && item[1] > 50)
+					if (thirdY.length > 0) {
+						drawLight(secondX[0][0] + 25, firstArr[0][1] + 25, secondX[0][0] + 25, thirdY[0][1] + 25)
+						for (let i = 0; i < mirrorArr.length; i++) {
+							if (mirrorArr[i][0] === secondX[0][0] && mirrorArr[i][1] === thirdY[0][1]) {
+								mirrorArr.splice(i, 1)
+								i--
+							}
+						}
+						if (thirdY[0][2]) {
+							const forthArr = mirrorArr.filter(item => item[1] === thirdY[0][1])
+							const forthX = forthArr.filter(item => item[0] === 250)
+							if (forthX.length > 0) {
+								drawLight(secondX[0][0] + 25, thirdY[0][1] + 25, 275, thirdY[0][1] + 25)
+								if (forthX[0][2]) {
+									drawLight(275, thirdY[0][1] + 25, 275, 100)
+								} else {
+									drawLight(275, thirdY[0][1] + 25, 275, 200)
+								}
+							}
+						} else {
+							drawLight(secondX[0][0] + 25, thirdY[0][1] + 25, secondX[0][0] + 25, 500)
+						}
+					} else {
+						drawLight(secondX[0][0] + 25, firstArr[0][1] + 25, secondX[0][0] + 25, 0)
+					}
+				}
+			} else {
+				drawLight(275, firstArr[0][1] + 25, 500, firstArr[0][1] + 25)
+			}
+		} else {
+			const secondArr = mirrorArr.filter(item => item[1] === firstArr[0][1])
+			const secondX = secondArr.filter(item => item[0] < 250)
+			if (secondX.length > 0) {
+				drawLight(275, firstArr[0][1] + 25, secondX[0][0] + 25, firstArr[0][1] + 25)
+				for (let i = 0; i < mirrorArr.length; i++) {
+					if (mirrorArr[i][0] === secondX[0][0] && mirrorArr[i][1] === firstArr[0][1]) {
+						mirrorArr.splice(i, 1)
+						i--
+					}
+				}
+				if (secondX[0][2]) {
+					const thirdArr = mirrorArr.filter(item => item[0] === secondX[0][0])
+					const thirdY = thirdArr.filter(item => item[1] < 200 && item[1] > 50)
+					if (thirdY.length > 0) {
+						drawLight(secondX[0][0] + 25, firstArr[0][1] + 25, secondX[0][0] + 25, thirdY[0][1] + 25)
+						for (let i = 0; i < mirrorArr.length; i++) {
+							if (mirrorArr[i][0] === secondX[0][0] && mirrorArr[i][1] === thirdY[0][1]) {
+								mirrorArr.splice(i, 1)
+								i--
+							}
+						}
+						if (thirdY[0][2]) {
+							drawLight(secondX[0][0] + 25, thirdY[0][1] + 25, secondX[0][0] + 25, 500)
+						} else {
+							const forthArr = mirrorArr.filter(item => item[1] === thirdY[0][1])
+							const forthX = forthArr.filter(item => item[0] === 250)
+							if (forthX.length > 0) {
+								drawLight(secondX[0][0] + 25, thirdY[0][1] + 25, 275, thirdY[0][1] + 25)
+								if (forthX[0][2]) {
+									drawLight(275, thirdY[0][1] + 25, 275, 200)
+								} else {
+									drawLight(275, thirdY[0][1] + 25, 275, 100)
+								}
+							}
+						}
+					} else {
+						drawLight(secondX[0][0] + 25, firstArr[0][1] + 25, secondX[0][0] + 25, 0)
+					}
+				} else {
+					// drawLight()
+				}
+			} else {
+				drawLight(275, firstArr[0][1] + 25, 0, firstArr[0][1] + 25)
+			}
+		}
+	} else {
+		drawLight(275, 350, 275, 450)
 	}
 }
