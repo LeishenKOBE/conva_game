@@ -371,7 +371,8 @@ function drawText() {
 		text: "x" + numberText,
 		fontSize: 14,
 		fill: "#fff",
-		storke: "#fff"
+		storke: "#fff",
+		name:'number'
 	});
 	layer.add(word);
 	layer.draw();
@@ -491,6 +492,13 @@ function dragendFun(e) {
 			for (let i = 0; i < layer.children.length; i++) {
 				let item = layer.children[i];
 				if (item.change) {
+					x = i;
+					break
+				}
+			}
+			for (let i = 0; i < layer.children.length; i++) {
+				let item = layer.children[i];
+				if (item.attrs.name) {
 					x = i;
 					break
 				}
@@ -699,7 +707,7 @@ function clickEnd() {
 			}
 		}
 	} else {
-		drawLight(75, 0, 75, 250)
+		drawLight(75, 250, 75, 0)
 		drawLight(75, 300, 75, 550)
 		showReStart()
 	}
