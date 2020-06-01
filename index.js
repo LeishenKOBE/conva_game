@@ -8,7 +8,7 @@ let directionCommon = true;
 var stage = new Konva.Stage({
   container: "container",
   width,
-  height
+  height,
 });
 
 var layer = new Konva.Layer();
@@ -19,7 +19,7 @@ var box = new Konva.Rect({
   y: 0,
   width: 500,
   height: 650,
-  fill: "#EC808D"
+  fill: "#EC808D",
 });
 layer.add(box);
 // 第一屏
@@ -28,7 +28,7 @@ var boxContent = new Konva.Rect({
   y: 175,
   width: 300,
   height: 300,
-  fill: "#FACD91"
+  fill: "#FACD91",
 });
 
 var textFirst = new Konva.Text({
@@ -37,7 +37,7 @@ var textFirst = new Konva.Text({
   text: "开始游戏前，让我们先\n来了解下什么是光的\n             反射？",
   fontSize: 28,
   fill: "#333",
-  storke: "#333"
+  storke: "#333",
 });
 
 layer.add(boxContent);
@@ -56,7 +56,7 @@ function drawSec() {
     y: height / 2 - 280,
     width: 400,
     height: 200,
-    fill: "#FACD91"
+    fill: "#FACD91",
   });
   var text2 = new Konva.Text({
     x: width / 2 - 200,
@@ -65,19 +65,19 @@ function drawSec() {
       "1.镜面反射：平行光线经界面反\n射后沿某一方向平行射出，只能\n在某一方向接收到反射光线\n（反射面是光滑平面）",
     fontSize: 28,
     fill: "#333",
-    storke: "#333"
+    storke: "#333",
   });
   layer.add(box2);
   layer.add(text2);
   var imageObj = new Image();
   imageObj.src = "./images/mirror.jpeg";
-  imageObj.onload = function() {
+  imageObj.onload = function () {
     var yoda = new Konva.Image({
       x: width / 2 - 180,
       y: height / 2 - 20,
       image: imageObj,
       width: 360,
-      height: 260
+      height: 260,
     });
 
     layer.add(yoda);
@@ -99,7 +99,7 @@ function drawThird() {
     y: height / 2 - 280,
     width: 400,
     height: 200,
-    fill: "#FACD91"
+    fill: "#FACD91",
   });
   var text3 = new Konva.Text({
     x: width / 2 - 200,
@@ -108,19 +108,19 @@ function drawThird() {
       "2.漫反射：\n平行光经界面反射后向各个不同\n的方向反射出去，即在各个不同\n的方向都能接收到反射光线（反\n射面是粗糙平面或曲面） ",
     fontSize: 28,
     fill: "#333",
-    storke: "#333"
+    storke: "#333",
   });
   layer.add(box3);
   layer.add(text3);
   var imageObj2 = new Image();
   imageObj2.src = "./images/man.jpeg";
-  imageObj2.onload = function() {
+  imageObj2.onload = function () {
     var yoda2 = new Konva.Image({
       x: width / 2 - 180,
       y: height / 2 - 20,
       image: imageObj2,
       width: 360,
-      height: 260
+      height: 260,
     });
 
     layer.add(yoda2);
@@ -139,7 +139,7 @@ function drawForth() {
     y: height / 2 - 150,
     width: 300,
     height: 300,
-    fill: "#FACD91"
+    fill: "#FACD91",
   });
   var text4 = new Konva.Text({
     x: width / 2 - 150,
@@ -148,7 +148,7 @@ function drawForth() {
       "现在初步认识了两种光\n的反射，让我们主要学\n习基于镜面反射的知识\n吧！",
     fontSize: 28,
     fill: "#333",
-    storke: "#333"
+    storke: "#333",
   });
 
   layer.add(box4);
@@ -162,7 +162,7 @@ function drawRect() {
     var dashedLine = new Konva.Line({
       points: [width / 2 - 250, 50 * (i + 1), width / 2 + 250, 50 * (i + 1)],
       stroke: "#D7D7D7",
-      tension: 1
+      tension: 1,
     });
     dashedLine.dash([5, 2]);
     layer.add(dashedLine);
@@ -171,7 +171,7 @@ function drawRect() {
     var dashedLine1 = new Konva.Line({
       points: [(i + 1) * 50, 0, (i + 1) * 50, 550],
       stroke: "#D7D7D7",
-      tension: 1
+      tension: 1,
     });
     dashedLine1.dash([5, 2]);
     layer.add(dashedLine1);
@@ -184,7 +184,7 @@ function drawObstacle(x, y, w, h) {
     y: y,
     width: w,
     height: h,
-    fill: "#555555"
+    fill: "#555555",
   });
   layer.add(rect);
   layer.draw();
@@ -198,13 +198,13 @@ function gotoTeach() {
   layer.draw();
   var imageObj = new Image();
   imageObj.src = "./images/1.png";
-  imageObj.onload = function() {
+  imageObj.onload = function () {
     var yoda = new Konva.Image({
       x: width / 2 - 250,
       y: height / 2 - 325,
       image: imageObj,
       width: 500,
-      height: 580
+      height: 580,
     });
     layer.add(yoda);
     layer.draw();
@@ -218,13 +218,13 @@ function teacher2() {
   layer.draw();
   var imageObj = new Image();
   imageObj.src = "./images/2.png";
-  imageObj.onload = function() {
+  imageObj.onload = function () {
     var yoda = new Konva.Image({
       x: width / 2 - 250,
       y: height / 2 - 325,
       image: imageObj,
       width: 500,
-      height: 580
+      height: 580,
     });
     layer.add(yoda);
     layer.draw();
@@ -238,13 +238,13 @@ function teacher3() {
   layer.draw();
   var imageObj = new Image();
   imageObj.src = "./images/3.png";
-  imageObj.onload = function() {
+  imageObj.onload = function () {
     var yoda = new Konva.Image({
       x: width / 2 - 250,
       y: height / 2 - 325,
       image: imageObj,
       width: 500,
-      height: 580
+      height: 580,
     });
     layer.add(yoda);
     layer.draw();
@@ -258,13 +258,13 @@ function teacher4() {
   layer.draw();
   var imageObj = new Image();
   imageObj.src = "./images/4.png";
-  imageObj.onload = function() {
+  imageObj.onload = function () {
     var yoda = new Konva.Image({
       x: width / 2 - 250,
       y: height / 2 - 325,
       image: imageObj,
       width: 500,
-      height: 580
+      height: 580,
     });
     layer.add(yoda);
     layer.draw();
@@ -281,7 +281,7 @@ function anotherAngle() {
     y: height / 2 - 150,
     width: 300,
     height: 300,
-    fill: "#FACD91"
+    fill: "#FACD91",
   });
   var text5 = new Konva.Text({
     x: width / 2 - 150,
@@ -289,7 +289,7 @@ function anotherAngle() {
     text: "为了巩固刚刚学到的反\n射知识，下面再来看一\n个入射角不同的例子",
     fontSize: 28,
     fill: "#333",
-    storke: "#333"
+    storke: "#333",
   });
   layer.add(box5);
   layer.add(text5);
@@ -303,13 +303,13 @@ function teacher5() {
   layer.draw();
   var imageObj = new Image();
   imageObj.src = "./images/5.png";
-  imageObj.onload = function() {
+  imageObj.onload = function () {
     var yoda = new Konva.Image({
       x: width / 2 - 250,
       y: height / 2 - 325,
       image: imageObj,
       width: 500,
-      height: 580
+      height: 580,
     });
     layer.add(yoda);
     layer.draw();
@@ -326,7 +326,7 @@ function teacher6() {
     y: height / 2 - 150,
     width: 300,
     height: 300,
-    fill: "#FACD91"
+    fill: "#FACD91",
   });
   var text5 = new Konva.Text({
     x: width / 2 - 150,
@@ -334,7 +334,7 @@ function teacher6() {
     text: "现在初步认识了两种光\n的反射，来开始基于镜\n面反射的演示游戏吧！",
     fontSize: 28,
     fill: "#333",
-    storke: "#333"
+    storke: "#333",
   });
   layer.add(box5);
   layer.add(text5);
@@ -351,7 +351,7 @@ function gotoGame() {
     y: height / 2 - 150,
     width: 300,
     height: 300,
-    fill: "#FACD91"
+    fill: "#FACD91",
   });
   var text6 = new Konva.Text({
     x: width / 2 - 150,
@@ -360,7 +360,7 @@ function gotoGame() {
       "假设猫是发光源，老鼠\n不能动，猫可以沿着光\n线移动，需要指定数量\n的镜子当做反射面引导\n猫捉到老鼠",
     fontSize: 28,
     fill: "#333",
-    storke: "#333"
+    storke: "#333",
   });
   layer.add(game1);
   layer.add(text6);
@@ -376,7 +376,7 @@ function drawText() {
     fontSize: 14,
     fill: "#fff",
     storke: "#fff",
-    name: "number"
+    name: "number",
   });
   layer.add(word);
   layer.draw();
@@ -391,12 +391,12 @@ function drawEnd() {
     radius: 30,
     fill: "#699BC8",
     strokeWidth: 4,
-    rotation: 90
+    rotation: 90,
   });
-  star.on("mouseover", function() {
+  star.on("mouseover", function () {
     document.body.style.cursor = "pointer";
   });
-  star.on("mouseout", function() {
+  star.on("mouseout", function () {
     document.body.style.cursor = "default";
   });
   star.on("click", clickEnd);
@@ -411,13 +411,13 @@ function drawMirror(n) {
       stroke: "#FFFF00",
       tension: 1,
       draggable: i === 0 ? false : true,
-      strokeWidth: 6
+      strokeWidth: 6,
     };
     var mirror1 = new Konva.Line(obj);
-    mirror1.on("mouseover", function() {
+    mirror1.on("mouseover", function () {
       document.body.style.cursor = "pointer";
     });
-    mirror1.on("mouseout", function() {
+    mirror1.on("mouseout", function () {
       document.body.style.cursor = "default";
     });
     layer.add(mirror1);
@@ -469,12 +469,12 @@ function dragendFun(e) {
       stroke: "#FFFF00",
       tension: 1,
       draggable: true,
-      strokeWidth: 6
+      strokeWidth: 6,
     });
-    mirror1.on("mouseover", function() {
+    mirror1.on("mouseover", function () {
       document.body.style.cursor = "pointer";
     });
-    mirror1.on("mouseout", function() {
+    mirror1.on("mouseout", function () {
       document.body.style.cursor = "default";
     });
     mirror1.on("dragend", dragendFun);
@@ -499,7 +499,7 @@ function dragendFun(e) {
       fontSize: 14,
       fill: "#fff",
       storke: "#fff",
-      name: "number"
+      name: "number",
     });
     layer.add(txt);
     layer.draw();
@@ -540,12 +540,12 @@ function dragendFun(e) {
         stroke: "#FFFF00",
         tension: 1,
         draggable: true,
-        strokeWidth: 6
+        strokeWidth: 6,
       });
-      mirror1.on("mouseover", function() {
+      mirror1.on("mouseover", function () {
         document.body.style.cursor = "pointer";
       });
-      mirror1.on("mouseout", function() {
+      mirror1.on("mouseout", function () {
         document.body.style.cursor = "default";
       });
       mirror1.on("dragend", dragendFun);
@@ -560,26 +560,26 @@ function dragendFun(e) {
 function drawCatAndMouse() {
   var cat = new Image();
   cat.src = "./images/cat.jpg"; // 设置图片路径
-  cat.onload = function() {
+  cat.onload = function () {
     var catImg = new Konva.Image({
       x: 50,
       y: 250,
       image: cat,
       width: 50,
-      height: 50
+      height: 50,
     });
     layer.add(catImg); // 添加图片对象到画布
     layer.draw(); // 渲染
   };
   var mouse = new Image();
   mouse.src = "./images/mouse.jpg"; // 设置图片路径
-  mouse.onload = function() {
+  mouse.onload = function () {
     var mouseImg = new Konva.Image({
       x: 400,
       y: 250,
       image: mouse,
       width: 50,
-      height: 50
+      height: 50,
     });
     layer.add(mouseImg); // 添加图片对象到画布
     layer.draw(); // 渲染
@@ -597,15 +597,15 @@ function gotoGame1() {
   drawEnd();
 }
 
-function drawLight(xs, yx, xe, ye) {
+function drawLight(xs, yx, xe, ye, color = "#95F204") {
   var arrow = new Konva.Arrow({
     points: [xs, yx, xe, ye],
     pointerLength: 20,
     pointerWidth: 20,
-    fill: "#95F204",
-    stroke: "#95F204",
+    fill: color,
+    stroke: color,
     strokeWidth: 4,
-    name: "light"
+    name: "light",
   });
   layer.add(arrow);
   layer.draw();
@@ -619,7 +619,7 @@ function showReStart(n) {
     text: "不好意思您失败了，\n请点击屏幕重新开始",
     fontSize: 34,
     fill: "#FFFF00",
-    storke: "#FFFF00"
+    storke: "#FFFF00",
   });
   layer.add(text);
   layer.draw(); // 渲染
@@ -639,7 +639,7 @@ function clickEnd() {
   let xArr = [];
   let yArr = [];
   let dir = [];
-  mirrorArr.forEach(item => {
+  mirrorArr.forEach((item) => {
     xArr.push(item[0]);
     yArr.push(item[1]);
     dir.push(item[2]);
@@ -793,13 +793,13 @@ function successPage() {
   layer.children.splice(1);
   var success = new Image();
   success.src = "./images/good.jpg"; // 设置图片路径
-  success.onload = function() {
+  success.onload = function () {
     var successImg = new Konva.Image({
       x: 150,
       y: 20,
       image: success,
       width: 200,
-      height: 200
+      height: 200,
     });
     layer.add(successImg); // 添加图片对象到画布
     var word = new Konva.Text({
@@ -808,7 +808,7 @@ function successPage() {
       text: "Congratulations\n你太棒了！\n第二关稍加了点\n难度，加油哦！",
       fontSize: 34,
       fill: "#FFFF00",
-      storke: "#FFFF00"
+      storke: "#FFFF00",
     });
     stage.on("click", gotoGame2);
     layer.add(word);
@@ -819,26 +819,26 @@ function successPage() {
 function drawPoliceAndThief() {
   var police = new Image();
   police.src = "./images/police.jpg"; // 设置图片路径
-  police.onload = function() {
+  police.onload = function () {
     var policeImg = new Konva.Image({
       x: 250,
       y: 200,
       image: police,
       width: 50,
-      height: 50
+      height: 50,
     });
     layer.add(policeImg); // 添加图片对象到画布
     layer.draw(); // 渲染
   };
   var thief = new Image();
   thief.src = "./images/thief.jpg"; // 设置图片路径
-  thief.onload = function() {
+  thief.onload = function () {
     var thiefImg = new Konva.Image({
       x: 250,
       y: 300,
       image: thief,
       width: 50,
-      height: 50
+      height: 50,
     });
     layer.add(thiefImg); // 添加图片对象到画布
     layer.draw(); // 渲染
@@ -868,12 +868,12 @@ function drawEnd2() {
     radius: 30,
     fill: "#699BC8",
     strokeWidth: 4,
-    rotation: 90
+    rotation: 90,
   });
-  star.on("mouseover", function() {
+  star.on("mouseover", function () {
     document.body.style.cursor = "pointer";
   });
-  star.on("mouseout", function() {
+  star.on("mouseout", function () {
     document.body.style.cursor = "default";
   });
   star.on("click", clickEnd2);
@@ -882,8 +882,8 @@ function drawEnd2() {
 }
 
 function clickEnd2() {
-  const arr = mirrorArr.filter(item => item[0] === 250);
-  const firstArr = arr.filter(item => item[1] > 300);
+  const arr = mirrorArr.filter((item) => item[0] === 250);
+  const firstArr = arr.filter((item) => item[1] > 300);
   if (firstArr.length > 0) {
     drawLight(275, 350, 275, firstArr[0][1] + 25);
     for (let i = 0; i < mirrorArr.length; i++) {
@@ -893,8 +893,8 @@ function clickEnd2() {
       }
     }
     if (firstArr[0][2]) {
-      const secondArr = mirrorArr.filter(item => item[1] === firstArr[0][1]);
-      const secondX = secondArr.filter(item => item[0] > 250);
+      const secondArr = mirrorArr.filter((item) => item[1] === firstArr[0][1]);
+      const secondX = secondArr.filter((item) => item[0] > 250);
       if (secondX.length > 0) {
         drawLight(
           275,
@@ -917,8 +917,12 @@ function clickEnd2() {
             showReStart(2);
           }, 500);
         } else {
-          const thirdArr = mirrorArr.filter(item => item[0] === secondX[0][0]);
-          const thirdY = thirdArr.filter(item => item[1] < 200 && item[1] > 50);
+          const thirdArr = mirrorArr.filter(
+            (item) => item[0] === secondX[0][0]
+          );
+          const thirdY = thirdArr.filter(
+            (item) => item[1] < 200 && item[1] > 50
+          );
           if (thirdY.length > 0) {
             drawLight(
               secondX[0][0] + 25,
@@ -937,9 +941,9 @@ function clickEnd2() {
             }
             if (thirdY[0][2]) {
               const forthArr = mirrorArr.filter(
-                item => item[1] === thirdY[0][1]
+                (item) => item[1] === thirdY[0][1]
               );
-              const forthX = forthArr.filter(item => item[0] === 250);
+              const forthX = forthArr.filter((item) => item[0] === 250);
               if (forthX.length > 0) {
                 drawLight(
                   secondX[0][0] + 25,
@@ -955,7 +959,7 @@ function clickEnd2() {
                 } else {
                   drawLight(275, thirdY[0][1] + 25, 275, 200);
                   setTimeout(() => {
-                    successPage();
+                    successPage2();
                   }, 1000);
                 }
               }
@@ -989,8 +993,8 @@ function clickEnd2() {
         }, 500);
       }
     } else {
-      const secondArr = mirrorArr.filter(item => item[1] === firstArr[0][1]);
-      const secondX = secondArr.filter(item => item[0] < 250);
+      const secondArr = mirrorArr.filter((item) => item[1] === firstArr[0][1]);
+      const secondX = secondArr.filter((item) => item[0] < 250);
       if (secondX.length > 0) {
         drawLight(
           275,
@@ -1008,8 +1012,12 @@ function clickEnd2() {
           }
         }
         if (secondX[0][2]) {
-          const thirdArr = mirrorArr.filter(item => item[0] === secondX[0][0]);
-          const thirdY = thirdArr.filter(item => item[1] < 200 && item[1] > 50);
+          const thirdArr = mirrorArr.filter(
+            (item) => item[0] === secondX[0][0]
+          );
+          const thirdY = thirdArr.filter(
+            (item) => item[1] < 200 && item[1] > 50
+          );
           if (thirdY.length > 0) {
             drawLight(
               secondX[0][0] + 25,
@@ -1038,9 +1046,9 @@ function clickEnd2() {
               }, 500);
             } else {
               const forthArr = mirrorArr.filter(
-                item => item[1] === thirdY[0][1]
+                (item) => item[1] === thirdY[0][1]
               );
-              const forthX = forthArr.filter(item => item[0] === 250);
+              const forthX = forthArr.filter((item) => item[0] === 250);
               if (forthX.length > 0) {
                 drawLight(
                   secondX[0][0] + 25,
@@ -1051,7 +1059,7 @@ function clickEnd2() {
                 if (forthX[0][2]) {
                   drawLight(275, thirdY[0][1] + 25, 275, 200);
                   setTimeout(() => {
-                    successPage();
+                    successPage2();
                   }, 1000);
                 } else {
                   drawLight(275, thirdY[0][1] + 25, 275, 100);
@@ -1088,4 +1096,607 @@ function clickEnd2() {
       showReStart(2);
     }, 500);
   }
+}
+
+function successPage2() {
+  layer.children.splice(1);
+  var success = new Image();
+  success.src = "./images/good.jpg"; // 设置图片路径
+  success.onload = function () {
+    var successImg = new Konva.Image({
+      x: 150,
+      y: 20,
+      image: success,
+      width: 200,
+      height: 200,
+    });
+    layer.add(successImg); // 添加图片对象到画布
+    var word = new Konva.Text({
+      x: 150,
+      y: 270,
+      text:
+        "Congratulations\n你太棒了！\n\n通过二关游戏，你\n已经充分掌握了\n光的反射原理，\n下面让我们学习\n光的折射",
+      fontSize: 34,
+      fill: "#FFFF00",
+      storke: "#FFFF00",
+    });
+    stage.on("click", gotoZheshe);
+    layer.add(word);
+    layer.draw(); // 渲染
+  };
+}
+function gotoZheshe() {
+  stage.off("click");
+  layer.children.splice(1);
+  layer.draw();
+  var game1 = new Konva.Rect({
+    x: width / 2 - 160,
+    y: height / 2 - 150,
+    width: 300,
+    height: 300,
+    fill: "#FACD91",
+  });
+  var text6 = new Konva.Text({
+    x: width / 2 - 150,
+    y: height / 2 - 60,
+    text: "前面我们熟悉了光的反\n射，下面来了解光的\n折射",
+    fontSize: 28,
+    fill: "#333",
+    storke: "#333",
+  });
+  layer.add(game1);
+  layer.add(text6);
+  layer.draw();
+  stage.on("click", zheshe1);
+}
+function zheshe1() {
+  stage.off("click");
+  layer.children.splice(1);
+  layer.draw();
+  // 第二屏
+  var box2 = new Konva.Rect({
+    x: width / 2 - 230,
+    y: height / 2 - 310,
+    width: 460,
+    height: 120,
+    fill: "#FACD91",
+  });
+  var text2 = new Konva.Text({
+    x: width / 2 - 200,
+    y: height / 2 - 290,
+    text:
+      "光的折射：光从一种介质射入另\n一种介质时，传播放心会发生偏\n折，这种现象就叫做光的折射",
+    fontSize: 28,
+    fill: "#333",
+    storke: "#333",
+  });
+  layer.add(box2);
+  layer.add(text2);
+  var imageObj = new Image();
+  imageObj.src = "./images/mirror.jpeg";
+  imageObj.onload = function () {
+    var yoda = new Konva.Image({
+      x: width / 2 - 230,
+      y: height / 2 - 150,
+      image: imageObj,
+      width: 230,
+      height: 200,
+    });
+
+    layer.add(yoda);
+    layer.draw();
+  };
+
+  // 图2
+  var imageObj1 = new Image();
+  imageObj1.src = "./images/zheshe1.jpg";
+  imageObj1.onload = function () {
+    var yoda1 = new Konva.Image({
+      x: width / 2 + 5,
+      y: height / 2 - 150,
+      image: imageObj1,
+      width: 225,
+      height: 200,
+    });
+
+    layer.add(yoda1);
+    layer.draw();
+  };
+
+  var box3 = new Konva.Rect({
+    x: width / 2 - 230,
+    y: height / 2 + 90,
+    width: 460,
+    height: 200,
+    fill: "#FACD91",
+  });
+  var text3 = new Konva.Text({
+    x: width / 2 - 220,
+    y: height / 2 + 110,
+    text:
+      "光的折射与光的反射一样都是发生在两种介质\n的交界处，只是反射光返回原介质中，\n而折射光则进入到另一种介质中。\n由于光在在两种不同的物质里传播速度不同，\n故在两种介质的交界处传播方向\n发生变化，这就是光的折射",
+    fontSize: 22,
+    fill: "#333",
+    storke: "#333",
+  });
+  layer.add(box3);
+  layer.add(text3);
+  layer.draw();
+
+  stage.on("click", zheshe2);
+}
+
+function zheshe2() {
+  stage.off("click");
+  layer.children.splice(1);
+  layer.draw();
+  var imageObj = new Image();
+  imageObj.src = "./images/zheshe2.png";
+  imageObj.onload = function () {
+    var yoda = new Konva.Image({
+      x: width / 2 - 250,
+      y: height / 2 - 325,
+      image: imageObj,
+      width: 500,
+      height: 580,
+    });
+    layer.add(yoda);
+    layer.draw();
+  };
+  stage.on("click", zheshe3);
+}
+
+function zheshe3() {
+  stage.off("click");
+  layer.children.splice(1);
+  layer.draw();
+  var imageObj = new Image();
+  imageObj.src = "./images/zheshe3.png";
+  imageObj.onload = function () {
+    var yoda = new Konva.Image({
+      x: width / 2 - 250,
+      y: height / 2 - 325,
+      image: imageObj,
+      width: 500,
+      height: 580,
+    });
+    layer.add(yoda);
+    layer.draw();
+  };
+  stage.on("click", teacher4);
+}
+function zheshe4() {
+  stage.off("click");
+  layer.children.splice(1);
+  layer.draw();
+  var imageObj = new Image();
+  imageObj.src = "./images/zheshe4.png";
+  imageObj.onload = function () {
+    var yoda = new Konva.Image({
+      x: width / 2 - 250,
+      y: height / 2 - 325,
+      image: imageObj,
+      width: 500,
+      height: 580,
+    });
+    layer.add(yoda);
+    layer.draw();
+  };
+  stage.on("click", zhesheGame);
+}
+function zhesheGame() {
+  stage.off("click");
+  layer.children.splice(1);
+  layer.draw();
+  var game1 = new Konva.Rect({
+    x: width / 2 - 160,
+    y: height / 2 - 150,
+    width: 300,
+    height: 300,
+    fill: "#FACD91",
+  });
+  var text6 = new Konva.Text({
+    x: width / 2 - 150,
+    y: height / 2 - 60,
+    text: "熟悉了光的折射，我们\n赶紧来通过游戏加深\n印象吧！",
+    fontSize: 28,
+    fill: "#333",
+    storke: "#333",
+  });
+  layer.add(game1);
+  layer.add(text6);
+  layer.draw();
+  stage.on("click", zhesheGame2);
+}
+function zhesheGame2() {
+  stage.off("click");
+  layer.children.splice(1);
+  layer.draw();
+
+  let obj = {
+    points: [50, 250, 450, 250],
+    stroke: "#7F7F7F",
+    tension: 1,
+    strokeWidth: 6,
+  };
+  let line = new Konva.Line(obj);
+  let dashLineObj = {
+    points: [250, 50, 250, 450],
+    stroke: "#0000FF",
+    tension: 1,
+    strokeWidth: 2,
+  };
+  let line1 = new Konva.Line(dashLineObj);
+
+  line1.dash([5, 2]);
+  layer.add(line);
+  layer.add(line1);
+  var imageObj = new Image();
+  imageObj.src = "./images/eye.jpeg";
+  imageObj.onload = function () {
+    var yoda = new Konva.Image({
+      x: width / 2 + 80,
+      y: height / 2 - 220,
+      image: imageObj,
+      width: 100,
+      height: 60,
+    });
+
+    layer.add(yoda);
+    layer.draw();
+  };
+  var imageObj1 = new Image();
+  imageObj1.src = "./images/fish.png";
+  imageObj1.onload = function () {
+    var yoda1 = new Konva.Image({
+      x: width / 2 - 180,
+      y: height / 2 + 20,
+      image: imageObj1,
+      width: 100,
+      height: 60,
+    });
+
+    layer.add(yoda1);
+    layer.draw();
+  };
+
+  var lineLightObj = {
+    points: [350, 150, 250, 250],
+    stroke: "#FFFF00",
+    tension: 1,
+    strokeWidth: 2,
+  };
+  var zhesheLightObj = {
+    points: [250, 250, 150, 350],
+    stroke: "#FFFF00",
+    tension: 1,
+    strokeWidth: 2,
+  };
+  let lineLight = new Konva.Line(lineLightObj);
+  let lineLight2 = new Konva.Line(zhesheLightObj);
+  layer.add(lineLight);
+  layer.add(lineLight2);
+
+  let textRect = new Konva.Rect({
+    x: 20,
+    y: 440,
+    width: 450,
+    height: 170,
+    fill: "#FACD91",
+  });
+  layer.add(textRect);
+
+  let textTips = new Konva.Text({
+    x: 40,
+    y: 460,
+    text:
+      "如果你在岸上，看到了池水中的鱼，\n只能瞄准选择鱼的上下左右4个\n按键之一来去捕鱼，请点击图中\n的按钮进行选择。",
+    fontSize: 28,
+    fill: "#333",
+    storke: "#333",
+  });
+  layer.add(textTips);
+
+  let airRect = new Konva.Rect({
+    x: 400,
+    y: 200,
+    width: 40,
+    height: 30,
+    fill: "#81D3F8",
+  });
+  let airText = new Konva.Text({
+    x: 400,
+    y: 210,
+    text: "空气",
+    fontSize: 18,
+    fill: "#333",
+    storke: "#333",
+  });
+  let waterRect = new Konva.Rect({
+    x: 400,
+    y: 270,
+    width: 40,
+    height: 30,
+    fill: "#81D3F8",
+  });
+  let waterText = new Konva.Text({
+    x: 410,
+    y: 280,
+    text: "水",
+    fontSize: 18,
+    fill: "#333",
+    storke: "#333",
+  });
+
+  let aRect = new Konva.Rect({
+    x: 100,
+    y: 290,
+    width: 60,
+    height: 30,
+    fill: "#81D3F8",
+  });
+  let aText = new Konva.Text({
+    x: 120,
+    y: 293,
+    text: "A",
+    fontSize: 28,
+    fill: "#333",
+    storke: "#333",
+  });
+  let bRect = new Konva.Rect({
+    x: 190,
+    y: 350,
+    width: 40,
+    height: 30,
+    fill: "#81D3F8",
+  });
+  let bText = new Konva.Text({
+    x: 200,
+    y: 353,
+    text: "B",
+    fontSize: 28,
+    fill: "#333",
+    storke: "#333",
+  });
+  let cRect = new Konva.Rect({
+    x: 100,
+    y: 409,
+    width: 50,
+    height: 30,
+    fill: "#81D3F8",
+  });
+  let cText = new Konva.Text({
+    x: 115,
+    y: 413,
+    text: "C",
+    fontSize: 28,
+    fill: "#333",
+    storke: "#333",
+  });
+  let dRect = new Konva.Rect({
+    x: 15,
+    y: 350,
+    width: 50,
+    height: 30,
+    fill: "#81D3F8",
+  });
+  let dText = new Konva.Text({
+    x: 30,
+    y: 350,
+    text: "D",
+    fontSize: 28,
+    fill: "#333",
+    storke: "#333",
+  });
+
+  layer.add(waterRect);
+  layer.add(waterText);
+  layer.add(airRect);
+  layer.add(airText);
+  layer.add(aRect);
+  layer.add(aText);
+  layer.add(bRect);
+  layer.add(bText);
+  layer.add(cRect);
+  layer.add(cText);
+  layer.add(dRect);
+  layer.add(dText);
+
+  layer.draw();
+  aRect.on("mouseover", function () {
+    document.body.style.cursor = "pointer";
+  });
+  aText.on("mouseover", function () {
+    document.body.style.cursor = "pointer";
+  });
+  aRect.on("mouseout", function () {
+    document.body.style.cursor = "default";
+  });
+  aText.on("mouseout", function () {
+    document.body.style.cursor = "default";
+  });
+
+  bRect.on("mouseover", function () {
+    document.body.style.cursor = "pointer";
+  });
+  bRect.on("mouseout", function () {
+    document.body.style.cursor = "default";
+  });
+  bText.on("mouseover", function () {
+    document.body.style.cursor = "pointer";
+  });
+  bText.on("mouseout", function () {
+    document.body.style.cursor = "default";
+  });
+
+  cRect.on("mouseover", function () {
+    document.body.style.cursor = "pointer";
+  });
+  cRect.on("mouseout", function () {
+    document.body.style.cursor = "default";
+  });
+  cText.on("mouseover", function () {
+    document.body.style.cursor = "pointer";
+  });
+  cText.on("mouseout", function () {
+    document.body.style.cursor = "default";
+  });
+
+  dRect.on("mouseover", function () {
+    document.body.style.cursor = "pointer";
+  });
+  dRect.on("mouseout", function () {
+    document.body.style.cursor = "default";
+  });
+  dText.on("mouseover", function () {
+    document.body.style.cursor = "pointer";
+  });
+  dText.on("mouseout", function () {
+    document.body.style.cursor = "default";
+  });
+  aRect.on("click", errorFun);
+  aText.on("click", errorFun);
+  bRect.on("click", errorFun);
+  bText.on("click", errorFun);
+  cRect.on("click", rightFun);
+  cText.on("click", rightFun);
+  dRect.on("click", errorFun);
+  dText.on("click", errorFun);
+}
+
+function errorFun() {
+  stage.off("click");
+  layer.children.splice(1);
+  var word = new Konva.Text({
+    x: 130,
+    y: 270,
+    text: "很遗憾选择错误，\n下面来看下原因吧",
+    fontSize: 34,
+    fill: "#FFFF00",
+    storke: "#FFFF00",
+  });
+  layer.add(word);
+  layer.draw(); // 渲染
+
+  setTimeout(() => {
+    stage.on("click", reasonPic1);
+  }, 500);
+}
+function rightFun() {
+  layer.children.splice(1);
+  var success = new Image();
+  success.src = "./images/good.jpg"; // 设置图片路径
+  success.onload = function () {
+    var successImg = new Konva.Image({
+      x: 150,
+      y: 20,
+      image: success,
+      width: 200,
+      height: 200,
+    });
+    layer.add(successImg); // 添加图片对象到画布
+    var word = new Konva.Text({
+      x: 150,
+      y: 270,
+      text: "Congratulations\n恭喜你闯完\n最后一关！",
+      fontSize: 34,
+      fill: "#FFFF00",
+      storke: "#FFFF00",
+    });
+    layer.add(word);
+    layer.draw(); // 渲染
+  };
+}
+
+function reasonPic1() {
+  stage.off("click");
+  layer.children.splice(1);
+  layer.draw();
+
+  let obj = {
+    points: [50, 250, 450, 250],
+    stroke: "#7F7F7F",
+    tension: 1,
+    strokeWidth: 6,
+  };
+  let line = new Konva.Line(obj);
+  let dashLineObj = {
+    points: [250, 50, 250, 450],
+    stroke: "#0000FF",
+    tension: 1,
+    strokeWidth: 2,
+  };
+  let line1 = new Konva.Line(dashLineObj);
+
+  line1.dash([5, 2]);
+  layer.add(line);
+  layer.add(line1);
+  var imageObj = new Image();
+  imageObj.src = "./images/eye.jpeg";
+  imageObj.onload = function () {
+    var yoda = new Konva.Image({
+      x: width / 2 + 80,
+      y: height / 2 - 220,
+      image: imageObj,
+      width: 100,
+      height: 60,
+    });
+
+    layer.add(yoda);
+    layer.draw();
+  };
+  var imageObj1 = new Image();
+  imageObj1.src = "./images/fish.png";
+  imageObj1.onload = function () {
+    var yoda1 = new Konva.Image({
+      x: width / 2 - 180,
+      y: height / 2 - 20,
+      image: imageObj1,
+      width: 100,
+      height: 60,
+    });
+
+    layer.add(yoda1);
+    layer.draw();
+  };
+  var imageObj2 = new Image();
+  imageObj2.src = "./images/fish.png";
+  imageObj2.onload = function () {
+    var yoda1 = new Konva.Image({
+      x: width / 2 - 180,
+      y: height / 2 + 50,
+      image: imageObj2,
+      width: 100,
+      height: 60,
+    });
+
+    layer.add(yoda1);
+    layer.draw();
+  };
+
+  drawLight(350, 150, 250, 240, "#0000FF");
+  drawLight(250, 240, 170, 300, "#0000FF");
+  drawLight(170, 380, 250, 250);
+  drawLight(250, 250, 350, 160);
+
+  let textRect = new Konva.Rect({
+    x: 20,
+    y: 440,
+    width: 450,
+    height: 170,
+    fill: "#FACD91",
+  });
+  layer.add(textRect);
+
+  let textTips = new Konva.Text({
+    x: 40,
+    y: 460,
+    text:
+      "从鱼身上反射出的光线由水中进入空气时，在水面上\n发生折射，折射角大于入射角，折射光线进入人眼，\n人眼会逆着折射光线的方向看去，\n就会觉得鱼变浅了，眼睛看到的是鱼的虚像，\n在鱼的上方，所以叉鱼时要瞄准像的下方。\n温馨提示：由于光的折射，\n在岸边看到的池水会比实际深度浅，\n所以不要贸然下去。",
+    fontSize: 18,
+    fill: "#333",
+    storke: "#333",
+  });
+  layer.add(textTips);
+  stage.on("click", rightFun);
 }
