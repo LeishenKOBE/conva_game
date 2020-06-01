@@ -1263,7 +1263,7 @@ function zheshe3() {
     layer.add(yoda);
     layer.draw();
   };
-  stage.on("click", teacher4);
+  stage.on("click", zheshe4);
 }
 function zheshe4() {
   stage.off("click");
