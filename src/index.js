@@ -818,7 +818,7 @@ function successPage() {
 
 function drawPoliceAndThief() {
   var police = new Image();
-  police.src = "./images/police.jpg"; // 设置图片路径
+  police.src = "./images/thief.jpg"; // 设置图片路径
   police.onload = function () {
     var policeImg = new Konva.Image({
       x: 250,
@@ -831,7 +831,7 @@ function drawPoliceAndThief() {
     layer.draw(); // 渲染
   };
   var thief = new Image();
-  thief.src = "./images/thief.jpg"; // 设置图片路径
+  thief.src = "./images/police.jpg"; // 设置图片路径
   thief.onload = function () {
     var thiefImg = new Konva.Image({
       x: 250,
@@ -1165,7 +1165,7 @@ function zheshe1() {
     x: width / 2 - 200,
     y: height / 2 - 290,
     text:
-      "光的折射：光从一种介质射入另\n一种介质时，传播放心会发生偏\n折，这种现象就叫做光的折射",
+      "光的折射：光从一种介质射入另\n一种介质时，传播方向会发生偏\n折，这种现象就叫做光的折射",
     fontSize: 28,
     fill: "#333",
     storke: "#333",
