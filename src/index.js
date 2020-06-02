@@ -1590,7 +1590,14 @@ function zhesheGame2() {
 }
 
 function errorFun() {
-  offFunc(stage);
+  // offFunc(aRect);
+  // offFunc(aText);
+  // offFunc(bRect);
+  // offFunc(bText);
+  // offFunc(cRect);
+  // offFunc(cText);
+  // offFunc(dRect);
+  // offFunc(dText);
   layer.children.splice(1);
   var word = new Konva.Text({
     x: 130,
@@ -1723,5 +1730,7 @@ function reasonPic1() {
     storke: "#333",
   });
   layer.add(textTips);
-  compatible(stage, rightFun);
+  setTimeout(() => {
+    compatible(stage, rightFun);
+  }, 500);
 }
