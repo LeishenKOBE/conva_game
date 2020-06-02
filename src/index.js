@@ -43,13 +43,87 @@ var textFirst = new Konva.Text({
 layer.add(boxContent);
 layer.add(textFirst);
 layer.draw();
-stage.on("click", drawSec);
+compatible(stage, drawSec);
+
+// 公用的方法
+function compatible(main, fun) {
+  main.on("tap", fun);
+  main.on("click", fun);
+}
+
+function offFunc(main) {
+  main.off("tap");
+  main.off("click");
+}
+// 写文字
+function drawText() {
+  var word = new Konva.Text({
+    x: 330,
+    y: 600,
+    text: "x" + numberText,
+    fontSize: 14,
+    fill: "#fff",
+    storke: "#fff",
+    name: "number",
+  });
+  layer.add(word);
+  layer.draw();
+}
+
+function drawLight(xs, yx, xe, ye, color = "#95F204") {
+  var arrow = new Konva.Arrow({
+    points: [xs, yx, xe, ye],
+    pointerLength: 20,
+    pointerWidth: 20,
+    fill: color,
+    stroke: color,
+    strokeWidth: 4,
+    name: "light",
+  });
+  layer.add(arrow);
+  layer.draw();
+}
+
+// 绘制背景方格
+function drawRect() {
+  for (let i = 0; i < 11; i++) {
+    var dashedLine = new Konva.Line({
+      points: [width / 2 - 250, 50 * (i + 1), width / 2 + 250, 50 * (i + 1)],
+      stroke: "#D7D7D7",
+      tension: 1,
+    });
+    dashedLine.dash([5, 2]);
+    layer.add(dashedLine);
+  }
+  for (let i = 0; i < 10; i++) {
+    var dashedLine1 = new Konva.Line({
+      points: [(i + 1) * 50, 0, (i + 1) * 50, 550],
+      stroke: "#D7D7D7",
+      tension: 1,
+    });
+    dashedLine1.dash([5, 2]);
+    layer.add(dashedLine1);
+  }
+}
+
+//画障碍物
+function drawObstacle(x, y, w, h) {
+  var rect = new Konva.Rect({
+    x: x,
+    y: y,
+    width: w,
+    height: h,
+    fill: "#555555",
+  });
+  layer.add(rect);
+  layer.draw();
+}
 
 // 绘制第二屏
 function drawSec() {
   layer.children.splice(1, 2);
   layer.draw();
-  stage.off("click");
+  offFunc(stage);
   // 第二屏
   var box2 = new Konva.Rect({
     x: width / 2 - 200,
@@ -85,14 +159,14 @@ function drawSec() {
   };
   layer.draw();
 
-  stage.on("click", drawThird);
+  compatible(stage, drawThird);
 }
 
 //绘制第三屏
 function drawThird() {
   layer.children.splice(1);
   layer.draw();
-  stage.off("click");
+  offFunc(stage);
   // 第三屏
   var box3 = new Konva.Rect({
     x: width / 2 - 200,
@@ -127,13 +201,13 @@ function drawThird() {
     layer.draw();
   };
   layer.draw();
-  stage.on("click", drawForth);
+  compatible(stage, drawForth);
 }
 //绘制第四屏
 function drawForth() {
   layer.children.splice(1);
   layer.draw();
-  stage.off("click");
+  offFunc(stage);
   var box4 = new Konva.Rect({
     x: width / 2 - 160,
     y: height / 2 - 150,
@@ -154,46 +228,12 @@ function drawForth() {
   layer.add(box4);
   layer.add(text4);
   layer.draw();
-  stage.on("click", gotoTeach);
+  compatible(stage, gotoTeach);
 }
-// 绘制背景方格
-function drawRect() {
-  for (let i = 0; i < 11; i++) {
-    var dashedLine = new Konva.Line({
-      points: [width / 2 - 250, 50 * (i + 1), width / 2 + 250, 50 * (i + 1)],
-      stroke: "#D7D7D7",
-      tension: 1,
-    });
-    dashedLine.dash([5, 2]);
-    layer.add(dashedLine);
-  }
-  for (let i = 0; i < 10; i++) {
-    var dashedLine1 = new Konva.Line({
-      points: [(i + 1) * 50, 0, (i + 1) * 50, 550],
-      stroke: "#D7D7D7",
-      tension: 1,
-    });
-    dashedLine1.dash([5, 2]);
-    layer.add(dashedLine1);
-  }
-}
-//画障碍物
-function drawObstacle(x, y, w, h) {
-  var rect = new Konva.Rect({
-    x: x,
-    y: y,
-    width: w,
-    height: h,
-    fill: "#555555",
-  });
-  layer.add(rect);
-  layer.draw();
-}
-// 画镜子
 
 // 进入讲解关
 function gotoTeach() {
-  stage.off("click");
+  offFunc(stage);
   layer.children.splice(1);
   layer.draw();
   var imageObj = new Image();
@@ -209,11 +249,11 @@ function gotoTeach() {
     layer.add(yoda);
     layer.draw();
   };
-  stage.on("click", teacher2);
+  compatible(stage, teacher2);
 }
 
 function teacher2() {
-  stage.off("click");
+  offFunc(stage);
   layer.children.splice(1);
   layer.draw();
   var imageObj = new Image();
@@ -229,11 +269,11 @@ function teacher2() {
     layer.add(yoda);
     layer.draw();
   };
-  stage.on("click", teacher3);
+  compatible(stage, teacher3);
 }
 
 function teacher3() {
-  stage.off("click");
+  offFunc(stage);
   layer.children.splice(1);
   layer.draw();
   var imageObj = new Image();
@@ -249,11 +289,11 @@ function teacher3() {
     layer.add(yoda);
     layer.draw();
   };
-  stage.on("click", teacher4);
+  compatible(stage, teacher4);
 }
 
 function teacher4() {
-  stage.off("click");
+  offFunc(stage);
   layer.children.splice(1);
   layer.draw();
   var imageObj = new Image();
@@ -269,11 +309,11 @@ function teacher4() {
     layer.add(yoda);
     layer.draw();
   };
-  stage.on("click", anotherAngle);
+  compatible(stage, anotherAngle);
 }
 
 function anotherAngle() {
-  stage.off("click");
+  offFunc(stage);
   layer.children.splice(1);
   layer.draw();
   var box5 = new Konva.Rect({
@@ -294,11 +334,11 @@ function anotherAngle() {
   layer.add(box5);
   layer.add(text5);
   layer.draw();
-  stage.on("click", teacher5);
+  compatible(stage, teacher5);
 }
 
 function teacher5() {
-  stage.off("click");
+  offFunc(stage);
   layer.children.splice(1);
   layer.draw();
   var imageObj = new Image();
@@ -314,11 +354,11 @@ function teacher5() {
     layer.add(yoda);
     layer.draw();
   };
-  stage.on("click", teacher6);
+  compatible(stage, teacher6);
 }
 
 function teacher6() {
-  stage.off("click");
+  offFunc(stage);
   layer.children.splice(1);
   layer.draw();
   var box5 = new Konva.Rect({
@@ -339,11 +379,11 @@ function teacher6() {
   layer.add(box5);
   layer.add(text5);
   layer.draw();
-  stage.on("click", gotoGame);
+  compatible(stage, gotoGame);
 }
 
 function gotoGame() {
-  stage.off("click");
+  offFunc(stage);
   layer.children.splice(1);
   layer.draw();
   var game1 = new Konva.Rect({
@@ -365,21 +405,7 @@ function gotoGame() {
   layer.add(game1);
   layer.add(text6);
   layer.draw();
-  stage.on("click", gotoGame1);
-}
-// 写文字
-function drawText() {
-  var word = new Konva.Text({
-    x: 330,
-    y: 600,
-    text: "x" + numberText,
-    fontSize: 14,
-    fill: "#fff",
-    storke: "#fff",
-    name: "number",
-  });
-  layer.add(word);
-  layer.draw();
+  compatible(stage, gotoGame1);
 }
 
 // 画结算三角
@@ -399,7 +425,7 @@ function drawEnd() {
   star.on("mouseout", function () {
     document.body.style.cursor = "default";
   });
-  star.on("click", clickEnd);
+  compatible(star, clickEnd);
   layer.add(star);
   layer.draw();
 }
@@ -430,8 +456,12 @@ function drawMirror(n) {
 }
 
 function dragstart(e) {
-  let xOffset = Math.floor(e.evt.offsetX / 50) * 50;
-  let yOffset = Math.floor(e.evt.offsetY / 50) * 50;
+  let xOffset = e.evt.offsetX
+    ? Math.floor(e.evt.offsetX / 50) * 50
+    : e.currentTarget.attrs.points[0];
+  let yOffset = e.evt.offsetY
+    ? Math.floor(e.evt.offsetY / 50) * 50
+    : e.currentTarget.attrs.points[1];
   for (let i = 0; i < mirrorArr.length; i++) {
     if (mirrorArr[i][0] === xOffset && mirrorArr[i][1] === yOffset) {
       directionCommon = mirrorArr[i][2];
@@ -448,6 +478,14 @@ function drag() {
 // 拖拽结束后判定动画
 function dragendFun(e) {
   if (time) {
+    let xOffset = e.evt.offsetX
+      ? e.evt.offsetX
+      : e.currentTarget.attrs.points[0] + e.currentTarget.attrs.x;
+    let yOffset = e.evt.offsetY
+      ? e.evt.offsetY
+      : e.currentTarget.attrs.points[1] + e.currentTarget.attrs.y;
+    xOffset = Math.floor(xOffset / 50) * 50;
+    yOffset = Math.floor(yOffset / 50) * 50;
     time = false;
     e.target.drag = true;
     let x = -1;
@@ -459,8 +497,6 @@ function dragendFun(e) {
       }
     }
     layer.children.splice(x, 1);
-    let xOffset = Math.floor(e.evt.offsetX / 50) * 50;
-    let yOffset = Math.floor(e.evt.offsetY / 50) * 50;
 
     let mirror1 = new Konva.Line({
       points: directionCommon
@@ -505,12 +541,9 @@ function dragendFun(e) {
     layer.draw();
     directionCommon = true;
   } else {
-    if (
-      e.evt.offsetX >= 0 &&
-      e.evt.offsetX <= 500 &&
-      e.evt.offsetY >= 0 &&
-      e.evt.offsetY <= 550
-    ) {
+    let startX = e.evt.offsetX ? e.evt.offsetX : e.target.attrs.points[0];
+    let startY = e.evt.offsetY ? e.evt.offsetY : e.target.attrs.points[1];
+    if (startX >= 0 && startX <= 500 && startY >= 0 && startY <= 550) {
       e.target.change = true;
       let x = -1;
       for (let i = 0; i < layer.children.length; i++) {
@@ -522,8 +555,9 @@ function dragendFun(e) {
       }
       layer.children.splice(x, 1);
       let direction = true;
-      let xOffset = Math.floor(e.evt.offsetX / 50) * 50;
-      let yOffset = Math.floor(e.evt.offsetY / 50) * 50;
+      let xOffset = Math.floor(startX / 50) * 50;
+      let yOffset = Math.floor(startY / 50) * 50;
+
       for (let i = 0; i < mirrorArr.length; i++) {
         if (mirrorArr[i][0] === xOffset && mirrorArr[i][1] === yOffset) {
           direction = mirrorArr[i][2];
@@ -587,7 +621,7 @@ function drawCatAndMouse() {
 }
 
 function gotoGame1() {
-  stage.off("click");
+  offFunc(stage);
   layer.children.splice(1);
   drawRect();
   drawObstacle(150, 200, 200, 150);
@@ -595,20 +629,6 @@ function gotoGame1() {
   layer.draw();
   drawMirror(2);
   drawEnd();
-}
-
-function drawLight(xs, yx, xe, ye, color = "#95F204") {
-  var arrow = new Konva.Arrow({
-    points: [xs, yx, xe, ye],
-    pointerLength: 20,
-    pointerWidth: 20,
-    fill: color,
-    stroke: color,
-    strokeWidth: 4,
-    name: "light",
-  });
-  layer.add(arrow);
-  layer.draw();
 }
 
 function showReStart(n) {
@@ -624,11 +644,15 @@ function showReStart(n) {
   layer.add(text);
   layer.draw(); // 渲染
   if (n === 1) {
-    stage.on("click", gotoGame1);
+    setTimeout(() => {
+      compatible(stage, gotoGame1);
+    }, 500);
     mirrorArr = [];
     numberText = 2;
   } else {
-    stage.on("click", gotoGame2);
+    setTimeout(() => {
+      compatible(stage, gotoGame2);
+    }, 500);
     mirrorArr = [];
     numberText = 4;
   }
@@ -810,7 +834,7 @@ function successPage() {
       fill: "#FFFF00",
       storke: "#FFFF00",
     });
-    stage.on("click", gotoGame2);
+    compatible(stage, gotoGame2);
     layer.add(word);
     layer.draw(); // 渲染
   };
@@ -848,7 +872,7 @@ function drawPoliceAndThief() {
 function gotoGame2() {
   numberText = 4;
   mirrorArr = [];
-  stage.off("click");
+  offFunc(stage);
   layer.children.splice(1);
   drawRect();
   drawObstacle(200, 50, 150, 50);
@@ -876,7 +900,9 @@ function drawEnd2() {
   star.on("mouseout", function () {
     document.body.style.cursor = "default";
   });
-  star.on("click", clickEnd2);
+  setTimeout(() => {
+    compatible(star, clickEnd2);
+  }, 500);
   layer.add(star);
   layer.draw();
 }
@@ -1120,13 +1146,13 @@ function successPage2() {
       fill: "#FFFF00",
       storke: "#FFFF00",
     });
-    stage.on("click", gotoZheshe);
+    compatible(stage, gotoZheshe);
     layer.add(word);
     layer.draw(); // 渲染
   };
 }
 function gotoZheshe() {
-  stage.off("click");
+  offFunc(stage);
   layer.children.splice(1);
   layer.draw();
   var game1 = new Konva.Rect({
@@ -1147,10 +1173,10 @@ function gotoZheshe() {
   layer.add(game1);
   layer.add(text6);
   layer.draw();
-  stage.on("click", zheshe1);
+  compatible(stage, zheshe1);
 }
 function zheshe1() {
-  stage.off("click");
+  offFunc(stage);
   layer.children.splice(1);
   layer.draw();
   // 第二屏
@@ -1214,7 +1240,7 @@ function zheshe1() {
     x: width / 2 - 220,
     y: height / 2 + 110,
     text:
-      "光的折射与光的反射一样都是发生在两种介质\n的交界处，只是反射光返回原介质中，\n而折射光则进入到另一种介质中。\n由于光在在两种不同的物质里传播速度不同，\n故在两种介质的交界处传播方向\n发生变化，这就是光的折射",
+      "光的折射与光的反射一样都是发生在两种介质\n的交界处，只是反射光返回原介质中，\n而折射光则进入到另一种介质中。\n由于光在在两种不同的物质里传播速度不同，\n故在两种介质的交界处传播方向发生变化，\n这就是光的折射",
     fontSize: 22,
     fill: "#333",
     storke: "#333",
@@ -1222,12 +1248,11 @@ function zheshe1() {
   layer.add(box3);
   layer.add(text3);
   layer.draw();
-
-  stage.on("click", zheshe2);
+  compatible(stage, zheshe2);
 }
 
 function zheshe2() {
-  stage.off("click");
+  offFunc(stage);
   layer.children.splice(1);
   layer.draw();
   var imageObj = new Image();
@@ -1243,11 +1268,11 @@ function zheshe2() {
     layer.add(yoda);
     layer.draw();
   };
-  stage.on("click", zheshe3);
+  compatible(stage, zheshe3);
 }
 
 function zheshe3() {
-  stage.off("click");
+  offFunc(stage);
   layer.children.splice(1);
   layer.draw();
   var imageObj = new Image();
@@ -1263,10 +1288,10 @@ function zheshe3() {
     layer.add(yoda);
     layer.draw();
   };
-  stage.on("click", zheshe4);
+  compatible(stage, zheshe4);
 }
 function zheshe4() {
-  stage.off("click");
+  offFunc(stage);
   layer.children.splice(1);
   layer.draw();
   var imageObj = new Image();
@@ -1282,10 +1307,10 @@ function zheshe4() {
     layer.add(yoda);
     layer.draw();
   };
-  stage.on("click", zhesheGame);
+  compatible(stage, zhesheGame);
 }
 function zhesheGame() {
-  stage.off("click");
+  offFunc(stage);
   layer.children.splice(1);
   layer.draw();
   var game1 = new Konva.Rect({
@@ -1306,10 +1331,10 @@ function zhesheGame() {
   layer.add(game1);
   layer.add(text6);
   layer.draw();
-  stage.on("click", zhesheGame2);
+  compatible(stage, zhesheGame2);
 }
 function zhesheGame2() {
-  stage.off("click");
+  offFunc(stage);
   layer.children.splice(1);
   layer.draw();
 
@@ -1554,18 +1579,18 @@ function zhesheGame2() {
   dText.on("mouseout", function () {
     document.body.style.cursor = "default";
   });
-  aRect.on("click", errorFun);
-  aText.on("click", errorFun);
-  bRect.on("click", errorFun);
-  bText.on("click", errorFun);
-  cRect.on("click", rightFun);
-  cText.on("click", rightFun);
-  dRect.on("click", errorFun);
-  dText.on("click", errorFun);
+  compatible(aRect, errorFun);
+  compatible(aText, errorFun);
+  compatible(bRect, errorFun);
+  compatible(bText, errorFun);
+  compatible(cRect, rightFun);
+  compatible(cText, rightFun);
+  compatible(dRect, errorFun);
+  compatible(dText, errorFun);
 }
 
 function errorFun() {
-  stage.off("click");
+  offFunc(stage);
   layer.children.splice(1);
   var word = new Konva.Text({
     x: 130,
@@ -1579,7 +1604,7 @@ function errorFun() {
   layer.draw(); // 渲染
 
   setTimeout(() => {
-    stage.on("click", reasonPic1);
+    compatible(stage, reasonPic1);
   }, 500);
 }
 function rightFun() {
@@ -1609,7 +1634,7 @@ function rightFun() {
 }
 
 function reasonPic1() {
-  stage.off("click");
+  offFunc(stage);
   layer.children.splice(1);
   layer.draw();
 
@@ -1698,5 +1723,5 @@ function reasonPic1() {
     storke: "#333",
   });
   layer.add(textTips);
-  stage.on("click", rightFun);
+  compatible(stage, rightFun);
 }
