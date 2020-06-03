@@ -1707,7 +1707,7 @@ function reasonPic1() {
   };
 
   drawLight(350, 150, 250, 240, "#0000FF");
-  drawLight(250, 240, 170, 300, "#0000FF");
+  drawLight(250, 240, 170, 315, "#0000FF");
   drawLight(170, 380, 250, 250);
   drawLight(250, 250, 350, 160);
 
