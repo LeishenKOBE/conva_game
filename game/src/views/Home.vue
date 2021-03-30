@@ -28,15 +28,13 @@ export default {
     });
     simpleText.offsetX(-simpleText.width() / 2);
     var blob = new Konva.Line({
-      points: [23, 20, 23, 160, 70, 93, 150, 109, 290, 139, 270, 93],
+      points: [200, 30, 100, 30, 100, 200, 110, 200, 110, 40],
       fill: "#00D2FF",
       stroke: "black",
       strokeWidth: 1,
       closed: true,
-      tension: 0.3,
+      tension: 0.2,
     });
-
-    // add the shape to the layer
     layer.add(blob);
     var circle = new Konva.Rect({
       x: 20,
@@ -48,8 +46,8 @@ export default {
       strokeWidth: 4,
       cornerRadius: 4,
     });
-    layer.add(circle);
-    layer.add(simpleText);
+    // layer.add(circle);
+    // layer.add(simpleText);
 
     stage.add(layer);
     layer.draw();
